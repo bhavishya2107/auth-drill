@@ -10,7 +10,7 @@ var apiRouter = require("./routes/api/index");
 require("dotenv").config();
 
 mongoose.connect(
-  'mongodb://localhost/authDB',
+  process.env.MONGO_URI,
   {
     useNewUrlParser: true,
     useCreateIndex: true,
@@ -18,7 +18,7 @@ mongoose.connect(
     useFindAndModify: true,
   },
   (err) => {
-    console.log("Connected", err ? false : true);
+    console.log("DB Connected", err ? false : true);
   }
 );
 
@@ -29,7 +29,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
-
+app.use(cors());
 app.use("/", indexRouter);
 app.use("/api", apiRouter);
 

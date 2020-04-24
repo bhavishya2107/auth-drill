@@ -15,7 +15,7 @@ router.get("/", function (req, res, next) {
 
 //get current user
 router.get("/current", auth.verifyToken, async (req, res) => {
-  var user = req.user.id;
+  var user = req.user.mentorid;
   try {
     var currentUser = await Mentor.findById(user)
     if (!currentUser) {

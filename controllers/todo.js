@@ -14,3 +14,14 @@ exports.createTodo = async (req, res) => {
     res.status(400).json({ error: "something went wrong" });
   }
 };
+
+//all todos
+exports.allTodos = async (req, res) => {
+  try {
+    var todos = await Todo.find()
+    if(!todos) return res.status(400).json({err:"no todos"})
+    res.json({success:"true", todos})
+  } catch (error) {
+    res.status(400).json({ error: "something went wrong" });
+  }
+};

@@ -6,6 +6,7 @@ var jwt = require("jsonwebtoken");
 exports.registerMentor = async (req, res, next) => {
   try {
     var newMentor = await Mentor.create(req.body);
+    newMentor.password = undefined
     res.json({ success: true, newMentor });
   } catch (err) {
     res.status(400).json({
@@ -48,6 +49,16 @@ exports.createTodo = async (req, res) => {
     } else {
       res.json({ msg: "you are not mentor to assign a task" });
     }
+  } catch (error) {
+    res.status(400).json({ error: "something went wrong" });
+  }
+};
+
+exports.allTodos = async (req, res) => {
+  try {
+    var todos = Todo.find()
+    if(!todos) return res.status(400).json({err:"no todos"})
+    res.json({success:"true", todos})
   } catch (error) {
     res.status(400).json({ error: "something went wrong" });
   }

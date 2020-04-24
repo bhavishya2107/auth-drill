@@ -17,6 +17,7 @@
     "express-jwt": "^5.3.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.9.10",
+    "mongoose-data-seed": "^2.1.6",
     "morgan": "~1.9.1"
   }
 }

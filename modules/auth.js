@@ -18,16 +18,6 @@ module.exports = {
       res.json({ msg: "Token required" });
     }
   },
-  isAdmin: async (req, res, next) => {
-    if (
-      req.body.email == "prashant@mentor.com" ||
-      "ankit@mentor.com" ||
-      "suraj@mentor.com"
-    ) {
-     
-    }
-    next();
-  },
   grantAccess: async (req, res, next) => {
     var id = req.user.mentorid;
     var mentor = await Mentor.findById(id);
@@ -38,4 +28,15 @@ module.exports = {
     }
     next();
   },
+  identification:async(req,res,next) => {
+    var id = req.user.mentorid;
+    req.user.isStudent = true
+    var mentor = await Mentor.findById(id);
+    if(mentor){
+      req.user.isStudent = true
+    }else {
+      req.user.isStudent = false
+      
+    }
+  }
 };
