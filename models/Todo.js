@@ -7,7 +7,9 @@ var todoSchema = new mongoose.Schema(
     },
     isCompleted: {
       type: Boolean,
+      default:false
     },
+
   },
   { timestamps: true }
 );

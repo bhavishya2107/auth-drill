@@ -20,7 +20,7 @@ var studentSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    batch_no: {
+    batch: {
       type: Number,
     },
   },

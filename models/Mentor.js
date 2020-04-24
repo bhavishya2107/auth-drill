@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
 var bcrypt = require("bcryptjs");
+const { ObjectId } = mongoose.Schema;
 
 var mentorSchema = new mongoose.Schema(
   {
@@ -20,9 +21,12 @@ var mentorSchema = new mongoose.Schema(
       type: String,
       trim: true,
     },
-    batch_no: {
-      type: Number,
-    },
+    todosCreated: [
+      {
+        type: ObjectId,
+        ref: "Todo",
+      },
+    ],
   },
   { timestamps: true }
 );
@@ -41,4 +45,4 @@ mentorSchema.methods.verifyPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-module.exports = mongoose.model("User", mentorSchema);
+module.exports = mongoose.model("Mentor", mentorSchema);
